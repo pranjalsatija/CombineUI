@@ -8,8 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		F967F9DE23D807050037AD9F /* CombineUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F967F9D423D807040037AD9F /* CombineUI.framework */; };
-		F967F9E323D807050037AD9F /* CombineUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F967F9E223D807050037AD9F /* CombineUITests.swift */; };
 		F967F9E523D807050037AD9F /* CombineUI.h in Headers */ = {isa = PBXBuildFile; fileRef = F967F9D723D807040037AD9F /* CombineUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F967F9EF23D807D80037AD9F /* CUIControlPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F967F9EE23D807D80037AD9F /* CUIControlPublisher.swift */; };
+		F967F9F423D81A060037AD9F /* CUIControlSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = F967F9F323D81A060037AD9F /* CUIControlSubscription.swift */; };
+		F967F9F623D81A210037AD9F /* MockSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = F967F9F523D81A210037AD9F /* MockSubscriber.swift */; };
+		F967F9F823D81A3E0037AD9F /* CUIControlSubscriptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F967F9F723D81A3E0037AD9F /* CUIControlSubscriptionTests.swift */; };
+		F967F9FA23D8D8280037AD9F /* CUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F967F9F923D8D8280037AD9F /* CUIViewController.swift */; };
+		F967FA0023D8ED340037AD9F /* CUIControlPublisherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F967F9FF23D8ED340037AD9F /* CUIControlPublisherTests.swift */; };
+		F967FA0223D8EDB60037AD9F /* CUIViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F967FA0123D8EDB60037AD9F /* CUIViewControllerTests.swift */; };
+		F967FA0423D8F4BE0037AD9F /* MockCUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F967FA0323D8F4BE0037AD9F /* MockCUIViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,8 +34,16 @@
 		F967F9D723D807040037AD9F /* CombineUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CombineUI.h; sourceTree = "<group>"; };
 		F967F9D823D807040037AD9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F967F9DD23D807050037AD9F /* CombineUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CombineUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F967F9E223D807050037AD9F /* CombineUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineUITests.swift; sourceTree = "<group>"; };
 		F967F9E423D807050037AD9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F967F9EE23D807D80037AD9F /* CUIControlPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CUIControlPublisher.swift; sourceTree = "<group>"; };
+		F967F9F023D8085C0037AD9F /* CombineUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CombineUITests-Bridging-Header.h"; sourceTree = "<group>"; };
+		F967F9F323D81A060037AD9F /* CUIControlSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CUIControlSubscription.swift; sourceTree = "<group>"; };
+		F967F9F523D81A210037AD9F /* MockSubscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSubscriber.swift; sourceTree = "<group>"; };
+		F967F9F723D81A3E0037AD9F /* CUIControlSubscriptionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CUIControlSubscriptionTests.swift; sourceTree = "<group>"; };
+		F967F9F923D8D8280037AD9F /* CUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CUIViewController.swift; sourceTree = "<group>"; };
+		F967F9FF23D8ED340037AD9F /* CUIControlPublisherTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CUIControlPublisherTests.swift; sourceTree = "<group>"; };
+		F967FA0123D8EDB60037AD9F /* CUIViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CUIViewControllerTests.swift; sourceTree = "<group>"; };
+		F967FA0323D8F4BE0037AD9F /* MockCUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCUIViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,8 +86,13 @@
 		F967F9D623D807040037AD9F /* CombineUI */ = {
 			isa = PBXGroup;
 			children = (
+				F967FA0A23DA4C500037AD9F /* GYB Templates */,
+				F967FA0B23DA4C610037AD9F /* GYB Output */,
 				F967F9D723D807040037AD9F /* CombineUI.h */,
 				F967F9D823D807040037AD9F /* Info.plist */,
+				F967F9EE23D807D80037AD9F /* CUIControlPublisher.swift */,
+				F967F9F323D81A060037AD9F /* CUIControlSubscription.swift */,
+				F967F9F923D8D8280037AD9F /* CUIViewController.swift */,
 			);
 			path = CombineUI;
 			sourceTree = "<group>";
@@ -80,10 +100,29 @@
 		F967F9E123D807050037AD9F /* CombineUITests */ = {
 			isa = PBXGroup;
 			children = (
-				F967F9E223D807050037AD9F /* CombineUITests.swift */,
 				F967F9E423D807050037AD9F /* Info.plist */,
+				F967F9F023D8085C0037AD9F /* CombineUITests-Bridging-Header.h */,
+				F967FA0323D8F4BE0037AD9F /* MockCUIViewController.swift */,
+				F967F9F523D81A210037AD9F /* MockSubscriber.swift */,
+				F967F9FF23D8ED340037AD9F /* CUIControlPublisherTests.swift */,
+				F967F9F723D81A3E0037AD9F /* CUIControlSubscriptionTests.swift */,
+				F967FA0123D8EDB60037AD9F /* CUIViewControllerTests.swift */,
 			);
 			path = CombineUITests;
+			sourceTree = "<group>";
+		};
+		F967FA0A23DA4C500037AD9F /* GYB Templates */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "GYB Templates";
+			sourceTree = "<group>";
+		};
+		F967FA0B23DA4C610037AD9F /* GYB Output */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "GYB Output";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -104,6 +143,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F967F9E823D807050037AD9F /* Build configuration list for PBXNativeTarget "CombineUI" */;
 			buildPhases = (
+				F967FA0723DA4A520037AD9F /* ShellScript */,
 				F967F9CF23D807040037AD9F /* Headers */,
 				F967F9D023D807040037AD9F /* Sources */,
 				F967F9D123D807040037AD9F /* Frameworks */,
@@ -148,9 +188,11 @@
 				TargetAttributes = {
 					F967F9D323D807040037AD9F = {
 						CreatedOnToolsVersion = 11.3.1;
+						LastSwiftMigration = 1130;
 					};
 					F967F9DC23D807050037AD9F = {
 						CreatedOnToolsVersion = 11.3.1;
+						LastSwiftMigration = 1130;
 					};
 				};
 			};
@@ -190,11 +232,34 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		F967FA0723DA4A520037AD9F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /usr/bin/ruby;
+			shellScript = "GYB_PATH = \"./Tools/gyb.py\"\nGYB_TEMPLATE_GLOB = \"./CombineUI/GYB Templates/*.gyb\"\nGYB_OUTPUT_DIR = \"./CombineUI/GYB Output\"\n\ntemplatePaths = Dir.glob(GYB_TEMPLATE_GLOB)\n\ntemplatePaths.each do |templatePath|\n    outputPath = File.join(GYB_OUTPUT_DIR, File.basename(templatePath, \".gyb\"))\n    templatePath.gsub!(\" \", \"\\\\ \")\n    outputPath.gsub!(\" \", \"\\\\ \")\n    # puts \"warning: #{outputPath}\"\n    system(\"#{GYB_PATH} -o #{outputPath} --line-directive '' #{templatePath}\")\nend\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F967F9D023D807040037AD9F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F967F9FA23D8D8280037AD9F /* CUIViewController.swift in Sources */,
+				F967F9F423D81A060037AD9F /* CUIControlSubscription.swift in Sources */,
+				F967F9EF23D807D80037AD9F /* CUIControlPublisher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,7 +267,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F967F9E323D807050037AD9F /* CombineUITests.swift in Sources */,
+				F967FA0023D8ED340037AD9F /* CUIControlPublisherTests.swift in Sources */,
+				F967F9F623D81A210037AD9F /* MockSubscriber.swift in Sources */,
+				F967FA0223D8EDB60037AD9F /* CUIViewControllerTests.swift in Sources */,
+				F967FA0423D8F4BE0037AD9F /* MockCUIViewController.swift in Sources */,
+				F967F9F823D81A3E0037AD9F /* CUIControlSubscriptionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +409,7 @@
 		F967F9E923D807050037AD9F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = ACK986NAN6;
@@ -356,6 +426,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = co.pranj.CombineUI;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -364,6 +435,7 @@
 		F967F9EA23D807050037AD9F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = ACK986NAN6;
@@ -388,6 +460,8 @@
 		F967F9EC23D807050037AD9F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ACK986NAN6;
 				INFOPLIST_FILE = CombineUITests/Info.plist;
@@ -398,6 +472,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = co.pranj.CombineUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CombineUITests/CombineUITests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -406,6 +482,8 @@
 		F967F9ED23D807050037AD9F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ACK986NAN6;
 				INFOPLIST_FILE = CombineUITests/Info.plist;
@@ -416,6 +494,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = co.pranj.CombineUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CombineUITests/CombineUITests-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
