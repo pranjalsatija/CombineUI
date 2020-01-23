@@ -65,6 +65,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F9358AE223DA5A0B00D096BF /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				F967FA0323D8F4BE0037AD9F /* MockCUIViewController.swift */,
+				F967F9F523D81A210037AD9F /* MockSubscriber.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		F9358AE323DA5A1200D096BF /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				F967F9FF23D8ED340037AD9F /* CUIControlPublisherTests.swift */,
+				F967F9F723D81A3E0037AD9F /* CUIControlSubscriptionTests.swift */,
+				F967FA0123D8EDB60037AD9F /* CUIViewControllerTests.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		F9358AE423DA5A2700D096BF /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				F967FA0B23DA4C610037AD9F /* GYB Output */,
+				F967F9EE23D807D80037AD9F /* CUIControlPublisher.swift */,
+				F967F9F323D81A060037AD9F /* CUIControlSubscription.swift */,
+				F967F9F923D8D8280037AD9F /* CUIViewController.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
 		F967F9CA23D807040037AD9F = {
 			isa = PBXGroup;
 			children = (
@@ -86,13 +116,10 @@
 		F967F9D623D807040037AD9F /* CombineUI */ = {
 			isa = PBXGroup;
 			children = (
-				F967FA0A23DA4C500037AD9F /* GYB Templates */,
-				F967FA0B23DA4C610037AD9F /* GYB Output */,
 				F967F9D723D807040037AD9F /* CombineUI.h */,
 				F967F9D823D807040037AD9F /* Info.plist */,
-				F967F9EE23D807D80037AD9F /* CUIControlPublisher.swift */,
-				F967F9F323D81A060037AD9F /* CUIControlSubscription.swift */,
-				F967F9F923D8D8280037AD9F /* CUIViewController.swift */,
+				F967FA0A23DA4C500037AD9F /* GYB Templates */,
+				F9358AE423DA5A2700D096BF /* Sources */,
 			);
 			path = CombineUI;
 			sourceTree = "<group>";
@@ -102,11 +129,8 @@
 			children = (
 				F967F9E423D807050037AD9F /* Info.plist */,
 				F967F9F023D8085C0037AD9F /* CombineUITests-Bridging-Header.h */,
-				F967FA0323D8F4BE0037AD9F /* MockCUIViewController.swift */,
-				F967F9F523D81A210037AD9F /* MockSubscriber.swift */,
-				F967F9FF23D8ED340037AD9F /* CUIControlPublisherTests.swift */,
-				F967F9F723D81A3E0037AD9F /* CUIControlSubscriptionTests.swift */,
-				F967FA0123D8EDB60037AD9F /* CUIViewControllerTests.swift */,
+				F9358AE223DA5A0B00D096BF /* Mocks */,
+				F9358AE323DA5A1200D096BF /* Tests */,
 			);
 			path = CombineUITests;
 			sourceTree = "<group>";
@@ -248,7 +272,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /usr/bin/ruby;
-			shellScript = "GYB_PATH = \"./Tools/gyb.py\"\nGYB_TEMPLATE_GLOB = \"./CombineUI/GYB Templates/*.gyb\"\nGYB_OUTPUT_DIR = \"./CombineUI/GYB Output\"\n\ntemplatePaths = Dir.glob(GYB_TEMPLATE_GLOB)\n\ntemplatePaths.each do |templatePath|\n    outputPath = File.join(GYB_OUTPUT_DIR, File.basename(templatePath, \".gyb\"))\n    templatePath.gsub!(\" \", \"\\\\ \")\n    outputPath.gsub!(\" \", \"\\\\ \")\n    # puts \"warning: #{outputPath}\"\n    system(\"#{GYB_PATH} -o #{outputPath} --line-directive '' #{templatePath}\")\nend\n";
+			shellScript = "GYB_PATH = \"./Tools/gyb.py\"\nGYB_TEMPLATE_GLOB = \"./CombineUI/GYB Templates/*.gyb\"\nGYB_OUTPUT_DIR = \"./CombineUI/Sources/GYB Output\"\n\ntemplatePaths = Dir.glob(GYB_TEMPLATE_GLOB)\n\ntemplatePaths.each do |templatePath|\n    outputPath = File.join(GYB_OUTPUT_DIR, File.basename(templatePath, \".gyb\"))\n    templatePath.gsub!(\" \", \"\\\\ \")\n    outputPath.gsub!(\" \", \"\\\\ \")\n    # puts \"warning: #{outputPath}\"\n    system(\"#{GYB_PATH} -o #{outputPath} --line-directive '' #{templatePath}\")\nend\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
