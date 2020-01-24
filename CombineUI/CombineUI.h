@@ -6,7 +6,7 @@
 //  Copyright © 2020 pranjal. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 //! Project version number for CombineUI.
 FOUNDATION_EXPORT double CombineUIVersionNumber;

@@ -9,9 +9,9 @@
 import Combine
 import UIKit
 
-class CUIControlPublisher<C: UIControl>: Publisher {
-    typealias Output = C
-    typealias Failure = Never
+public class CUIControlPublisher<C: UIControl>: Publisher {
+    public typealias Output = C
+    public typealias Failure = Never
     
     let control: C
     let events: [UIControl.Event]
@@ -21,13 +21,13 @@ class CUIControlPublisher<C: UIControl>: Publisher {
         self.events = events
     }
     
-    func receive<S>(subscriber: S) where S : Subscriber, Output == S.Input, Failure == S.Failure {
+    public func receive<S>(subscriber: S) where S : Subscriber, Output == S.Input, Failure == S.Failure {
         let subscription = CUIControlSubscription(control: control, events: events, subscriber: subscriber)
         subscriber.receive(subscription: subscription)
     }
 }
 
-extension NSObjectProtocol where Self: UIControl {
+public extension NSObjectProtocol where Self: UIControl {
     func publisher(for events: [UIControl.Event]) -> CUIControlPublisher<Self> {
         return CUIControlPublisher(control: self, events: events)
     }

@@ -9,14 +9,15 @@
 import Combine
 import UIKit
 
-class CUIControlSubscription<C: UIControl, S: Subscriber>: Subscription where S.Input == C {
+public class CUIControlSubscription<C: UIControl, S: Subscriber>: Subscription where S.Input == C {
     var control: C?
     let events: [UIControl.Event]
     var subscriber: S?
     
-    var demand: Subscribers.Demand = .none
+    var demand: Subscribers.Demand = .unlimited
     var hasDemand: Bool {
-        return (demand.max ?? 1) > 0
+//        return (demand.max ?? 1) > 0
+        return true
     }
     
     init(control: C, events: [UIControl.Event], subscriber: S) {
@@ -34,11 +35,11 @@ class CUIControlSubscription<C: UIControl, S: Subscriber>: Subscription where S.
         request(subscriber.receive(control))
     }
     
-    func request(_ demand: Subscribers.Demand) {
+    public func request(_ demand: Subscribers.Demand) {
         self.demand = demand
     }
     
-    func cancel() {
+    public func cancel() {
         control = nil
         subscriber = nil
     }

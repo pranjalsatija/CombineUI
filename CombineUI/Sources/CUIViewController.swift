@@ -9,21 +9,21 @@
 import Combine
 import UIKit
 
-class CUIViewController: UIViewController {
-    var cancellables = Set<AnyCancellable>()
-    var keyedCancellables = [AnyHashable : AnyCancellable]()
+open class CUIViewController: UIViewController {
+    public var cancellables = Set<AnyCancellable>()
+    public var keyedCancellables = [AnyHashable : AnyCancellable]()
     
     deinit {
         cancellables.forEach { $0.cancel() }
         keyedCancellables.values.forEach { $0.cancel() }
     }
     
-    override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         configureBindings()
     }
     
-    func configureBindings() {
+    open func configureBindings() {
         
     }
     
