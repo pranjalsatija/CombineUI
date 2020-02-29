@@ -9,23 +9,23 @@
 import Combine
 import UIKit
 
-class DiffableDataSource<T: Hashable, I: Hashable>: UITableViewDiffableDataSource<T, I> {
+public class DiffableDataSource<T: Hashable, I: Hashable>: UITableViewDiffableDataSource<T, I> {
     var sections: [UITableViewSection]!
     
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+    public override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         true
     }
     
-    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+    public override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         sections[section].titleForFooter()
     }
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    public override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         sections[section].titleForHeader()
     }
 }
 
-class UITableViewSection: NSObject {
+public class UITableViewSection: NSObject {
     private(set) var data = [AnyHashable]()
     private(set) var sectionIndex: Int!
     
@@ -39,7 +39,7 @@ class UITableViewSection: NSObject {
     
     private var subscriptions = Set<AnyCancellable>()
     
-    convenience init<T: Hashable>(
+    public convenience init<T: Hashable>(
         data: [T],
         cellProvider: @escaping (UITableView, IndexPath, T) -> UITableViewCell,
         onSelect: ((IndexPath) -> Void)? = nil,
@@ -59,7 +59,7 @@ class UITableViewSection: NSObject {
         )
     }
     
-    init<T: Hashable, P: Publisher>(
+    public init<T: Hashable, P: Publisher>(
         data: P,
         cellProvider: @escaping (UITableView, IndexPath, T) -> UITableViewCell,
         onSelect: ((IndexPath) -> Void)? = nil,
@@ -86,7 +86,7 @@ class UITableViewSection: NSObject {
         }.store(in: &subscriptions)
     }
     
-    enum Accessory: ExpressibleByStringLiteral {
+    public enum Accessory: ExpressibleByStringLiteral {
         case text(String)
         case view(UIView)
         
@@ -106,7 +106,7 @@ class UITableViewSection: NSObject {
             return nil
         }
         
-        init(stringLiteral value: String) {
+        public init(stringLiteral value: String) {
             self = .text(value)
         }
     }
@@ -123,7 +123,7 @@ extension UITableViewSection {
     func viewForHeader() -> UIView? { header?.view }
 }
 
-class UITableViewDescriptor: NSObject {
+public class UITableViewDescriptor: NSObject {
     var dataSource: DiffableDataSource<Int, AnyHashable>!
     var tableView: UITableView? {
         didSet {
@@ -134,12 +134,8 @@ class UITableViewDescriptor: NSObject {
     private var sections = [UITableViewSection]()
     private let sectionsPublisher: AnyPublisher<[UITableViewSection], Never>
     private var subscriptions = Set<AnyCancellable>()
-        
-    convenience init(sections: [UITableViewSection]) {
-        self.init(sections: Just(sections).eraseToAnyPublisher())
-    }
-    
-    init<T: Publisher>(sections: T) where T.Output == [UITableViewSection], T.Failure == Never {
+
+    public init<T: Publisher>(sections: T) where T.Output == [UITableViewSection], T.Failure == Never {
         self.sectionsPublisher = sections.eraseToAnyPublisher()
     }
     
@@ -182,11 +178,11 @@ extension UITableViewDescriptor: UITableViewDelegate {
         sections[section].numberOfRows()
     }
     
-    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    public func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         sections[indexPath.section].leadingSwipeActionsConfiguration(for: indexPath)
     }
     
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    public func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         sections[indexPath.section].trailingSwipeActionsConfiguration(for: indexPath)
     }
 }
@@ -194,7 +190,7 @@ extension UITableViewDescriptor: UITableViewDelegate {
 extension UITableView {
     static private let snapshotKey = "snapshot"
     
-    var descriptor: UITableViewDescriptor? {
+    public var descriptor: UITableViewDescriptor? {
         get { objc_getAssociatedObject(self, Self.snapshotKey) as? UITableViewDescriptor }
         set {
             objc_setAssociatedObject(self, Self.snapshotKey, newValue, .OBJC_ASSOCIATION_ASSIGN)
