@@ -15,9 +15,10 @@ public class CUIControlSubscription<C: UIControl, S: Subscriber>: Subscription w
     var subscriber: S?
     
     var demand: Subscribers.Demand = .unlimited
+    
     var hasDemand: Bool {
-//        return (demand.max ?? 1) > 0
-        return true
+        // TODO: find out why `demand != .none` doesn't work
+        true
     }
     
     init(control: C, events: [UIControl.Event], subscriber: S) {

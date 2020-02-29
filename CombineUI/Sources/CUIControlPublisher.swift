@@ -28,11 +28,11 @@ public class CUIControlPublisher<C: UIControl>: Publisher {
 }
 
 public extension NSObjectProtocol where Self: UIControl {
-    func publisher(for events: [UIControl.Event]) -> CUIControlPublisher<Self> {
+    func publisher(for events: [UIControl.Event], shouldIgnoreDemand: Bool = true) -> CUIControlPublisher<Self> {
         return CUIControlPublisher(control: self, events: events)
     }
     
-    func publisher(for event: UIControl.Event) -> CUIControlPublisher<Self> {
+    func publisher(for event: UIControl.Event, shouldIgnoreDemand: Bool = true) -> CUIControlPublisher<Self> {
         return CUIControlPublisher(control: self, events: [event])
     }
 }

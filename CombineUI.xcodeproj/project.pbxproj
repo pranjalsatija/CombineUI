@@ -23,6 +23,7 @@
 		F97BC99223DABE29008A5761 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F97BC99023DABE29008A5761 /* Main.storyboard */; };
 		F97BC99423DABE29008A5761 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F97BC99323DABE29008A5761 /* Assets.xcassets */; };
 		F97BC99723DABE29008A5761 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F97BC99523DABE29008A5761 /* LaunchScreen.storyboard */; };
+		F9845AAF23F5262C002C99B2 /* CUITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9845AAE23F5262C002C99B2 /* CUITableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		F97BC99323DABE29008A5761 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F97BC99623DABE29008A5761 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F97BC99823DABE29008A5761 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F9845AAE23F5262C002C99B2 /* CUITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CUITableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,10 +117,10 @@
 		F9358AE423DA5A2700D096BF /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				F967FA0B23DA4C610037AD9F /* GYB Output */,
 				F967F9EE23D807D80037AD9F /* CUIControlPublisher.swift */,
 				F967F9F323D81A060037AD9F /* CUIControlSubscription.swift */,
 				F967F9F923D8D8280037AD9F /* CUIViewController.swift */,
+				F9845AAE23F5262C002C99B2 /* CUITableView.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -149,7 +151,6 @@
 			children = (
 				F967F9D723D807040037AD9F /* CombineUI.h */,
 				F967F9D823D807040037AD9F /* Info.plist */,
-				F967FA0A23DA4C500037AD9F /* GYB Templates */,
 				F9358AE423DA5A2700D096BF /* Sources */,
 			);
 			path = CombineUI;
@@ -164,20 +165,6 @@
 				F9358AE323DA5A1200D096BF /* Tests */,
 			);
 			path = CombineUITests;
-			sourceTree = "<group>";
-		};
-		F967FA0A23DA4C500037AD9F /* GYB Templates */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "GYB Templates";
-			sourceTree = "<group>";
-		};
-		F967FA0B23DA4C610037AD9F /* GYB Output */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "GYB Output";
 			sourceTree = "<group>";
 		};
 		F97BC98923DABE29008A5761 /* Example */ = {
@@ -219,7 +206,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F967F9E823D807050037AD9F /* Build configuration list for PBXNativeTarget "CombineUI" */;
 			buildPhases = (
-				F967FA0723DA4A520037AD9F /* ShellScript */,
 				F967F9CF23D807040037AD9F /* Headers */,
 				F967F9D023D807040037AD9F /* Sources */,
 				F967F9D123D807040037AD9F /* Frameworks */,
@@ -340,32 +326,13 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		F967FA0723DA4A520037AD9F /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /usr/bin/ruby;
-			shellScript = "GYB_PATH = \"./Tools/gyb.py\"\nGYB_TEMPLATE_GLOB = \"./CombineUI/GYB Templates/*.gyb\"\nGYB_OUTPUT_DIR = \"./CombineUI/Sources/GYB Output\"\n\ntemplatePaths = Dir.glob(GYB_TEMPLATE_GLOB)\n\ntemplatePaths.each do |templatePath|\n    outputPath = File.join(GYB_OUTPUT_DIR, File.basename(templatePath, \".gyb\"))\n    templatePath.gsub!(\" \", \"\\\\ \")\n    outputPath.gsub!(\" \", \"\\\\ \")\n    system(\"#{GYB_PATH} -o #{outputPath} --line-directive '' #{templatePath}\")\nend\n";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		F967F9D023D807040037AD9F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				F967F9FA23D8D8280037AD9F /* CUIViewController.swift in Sources */,
+				F9845AAF23F5262C002C99B2 /* CUITableView.swift in Sources */,
 				F967F9F423D81A060037AD9F /* CUIControlSubscription.swift in Sources */,
 				F967F9EF23D807D80037AD9F /* CUIControlPublisher.swift in Sources */,
 			);
