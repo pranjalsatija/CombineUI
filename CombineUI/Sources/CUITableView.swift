@@ -31,9 +31,9 @@ public class UITableViewSection: NSObject {
     
     private let dataPublisher: AnyPublisher<[AnyHashable], Never>
     private let cellProvider: (UITableView, IndexPath, AnyHashable) -> UITableViewCell
-    private let onSelect: ((IndexPath) -> Void)?
-    private let leadingSwipeActionsConfiguration: ((IndexPath) -> UISwipeActionsConfiguration?)?
-    private let trailingSwipeActionsConfiguration: ((IndexPath) -> UISwipeActionsConfiguration?)?
+    private let onSelect: ((IndexPath, AnyHashable) -> Void)?
+    private let leadingSwipeActionsConfiguration: ((IndexPath, AnyHashable) -> UISwipeActionsConfiguration?)?
+    private let trailingSwipeActionsConfiguration: ((IndexPath, AnyHashable) -> UISwipeActionsConfiguration?)?
     private let header: Accessory?
     private let footer: Accessory?
     
@@ -42,9 +42,9 @@ public class UITableViewSection: NSObject {
     public convenience init<T: Hashable>(
         data: [T],
         cellProvider: @escaping (UITableView, IndexPath, T) -> UITableViewCell,
-        onSelect: ((IndexPath) -> Void)? = nil,
-        leadingSwipeActionsConfiguration: ((IndexPath) -> UISwipeActionsConfiguration?)? = nil,
-        trailingSwipeActionsConfiguration: ((IndexPath) -> UISwipeActionsConfiguration?)? = nil,
+        onSelect: ((IndexPath, T) -> Void)? = nil,
+        leadingSwipeActionsConfiguration: ((IndexPath, T) -> UISwipeActionsConfiguration?)? = nil,
+        trailingSwipeActionsConfiguration: ((IndexPath, T) -> UISwipeActionsConfiguration?)? = nil,
         header: Accessory? = nil,
         footer: Accessory? = nil
     ) {
@@ -62,17 +62,17 @@ public class UITableViewSection: NSObject {
     public init<T: Hashable, P: Publisher>(
         data: P,
         cellProvider: @escaping (UITableView, IndexPath, T) -> UITableViewCell,
-        onSelect: ((IndexPath) -> Void)? = nil,
-        leadingSwipeActionsConfiguration: ((IndexPath) -> UISwipeActionsConfiguration?)? = nil,
-        trailingSwipeActionsConfiguration: ((IndexPath) -> UISwipeActionsConfiguration?)? = nil,
+        onSelect: ((IndexPath, T) -> Void)? = nil,
+        leadingSwipeActionsConfiguration: ((IndexPath, T) -> UISwipeActionsConfiguration?)? = nil,
+        trailingSwipeActionsConfiguration: ((IndexPath, T) -> UISwipeActionsConfiguration?)? = nil,
         header: Accessory? = nil,
         footer: Accessory? = nil
     ) where P.Output == [T], P.Failure == Never {
         self.dataPublisher = data.map { $0 as [AnyHashable] }.eraseToAnyPublisher()
         self.cellProvider = { cellProvider($0, $1, $2 as! T) }
-        self.onSelect = onSelect
-        self.leadingSwipeActionsConfiguration = leadingSwipeActionsConfiguration
-        self.trailingSwipeActionsConfiguration = trailingSwipeActionsConfiguration
+        self.onSelect = { onSelect?($0, $1 as! T) }
+        self.leadingSwipeActionsConfiguration = { leadingSwipeActionsConfiguration?($0, $1 as! T) }
+        self.trailingSwipeActionsConfiguration = { trailingSwipeActionsConfiguration?($0, $1 as! T) }
         self.header = header
         self.footer = footer
     }
@@ -117,8 +117,8 @@ extension UITableViewSection {
     func numberOfRows() -> Int { data.count }
     func titleForFooter() -> String? { footer?.text }
     func titleForHeader() -> String? { header?.text }
-    func leadingSwipeActionsConfiguration(for indexPath: IndexPath) -> UISwipeActionsConfiguration? { leadingSwipeActionsConfiguration?(indexPath) }
-    func trailingSwipeActionsConfiguration(for indexPath: IndexPath) -> UISwipeActionsConfiguration? { trailingSwipeActionsConfiguration?(indexPath) }
+    func leadingSwipeActionsConfiguration(for indexPath: IndexPath) -> UISwipeActionsConfiguration? { leadingSwipeActionsConfiguration?(indexPath, data[indexPath.row]) }
+    func trailingSwipeActionsConfiguration(for indexPath: IndexPath) -> UISwipeActionsConfiguration? { trailingSwipeActionsConfiguration?(indexPath, data[indexPath.row]) }
     func viewForFooter() -> UIView? { footer?.view }
     func viewForHeader() -> UIView? { header?.view }
 }
