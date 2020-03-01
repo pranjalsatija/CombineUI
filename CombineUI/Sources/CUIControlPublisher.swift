@@ -9,7 +9,7 @@
 import Combine
 import UIKit
 
-public class CUIControlPublisher<C: UIControl>: Publisher {
+public class CUIControlPublisher<C: SupportsTargetAction>: Publisher {
     public typealias Output = C
     public typealias Failure = Never
     
@@ -24,15 +24,5 @@ public class CUIControlPublisher<C: UIControl>: Publisher {
     public func receive<S>(subscriber: S) where S : Subscriber, Output == S.Input, Failure == S.Failure {
         let subscription = CUIControlSubscription(control: control, events: events, subscriber: subscriber)
         subscriber.receive(subscription: subscription)
-    }
-}
-
-public extension NSObjectProtocol where Self: UIControl {
-    func publisher(for events: [UIControl.Event], shouldIgnoreDemand: Bool = true) -> CUIControlPublisher<Self> {
-        return CUIControlPublisher(control: self, events: events)
-    }
-    
-    func publisher(for event: UIControl.Event, shouldIgnoreDemand: Bool = true) -> CUIControlPublisher<Self> {
-        return CUIControlPublisher(control: self, events: [event])
     }
 }

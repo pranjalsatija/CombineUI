@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F91E8068240B56BF001F5049 /* CNSManagedObjectFetchResultsSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91E8067240B56BF001F5049 /* CNSManagedObjectFetchResultsSnapshot.swift */; };
+		F95DE660240B4DB600E1832F /* NSObject+Memory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95DE65F240B4DB600E1832F /* NSObject+Memory.swift */; };
+		F95DE662240B4DC300E1832F /* UIAlertController+CombineUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95DE661240B4DC300E1832F /* UIAlertController+CombineUI.swift */; };
 		F967F9DE23D807050037AD9F /* CombineUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F967F9D423D807040037AD9F /* CombineUI.framework */; };
 		F967F9E523D807050037AD9F /* CombineUI.h in Headers */ = {isa = PBXBuildFile; fileRef = F967F9D723D807040037AD9F /* CombineUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F967F9EF23D807D80037AD9F /* CUIControlPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F967F9EE23D807D80037AD9F /* CUIControlPublisher.swift */; };
@@ -44,6 +47,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F91E8067240B56BF001F5049 /* CNSManagedObjectFetchResultsSnapshot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNSManagedObjectFetchResultsSnapshot.swift; sourceTree = "<group>"; };
+		F95DE65F240B4DB600E1832F /* NSObject+Memory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Memory.swift"; sourceTree = "<group>"; };
+		F95DE661240B4DC300E1832F /* UIAlertController+CombineUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+CombineUI.swift"; sourceTree = "<group>"; };
 		F967F9D423D807040037AD9F /* CombineUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CombineUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F967F9D723D807040037AD9F /* CombineUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CombineUI.h; sourceTree = "<group>"; };
 		F967F9D823D807040037AD9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -117,10 +123,13 @@
 		F9358AE423DA5A2700D096BF /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				F91E8067240B56BF001F5049 /* CNSManagedObjectFetchResultsSnapshot.swift */,
 				F967F9EE23D807D80037AD9F /* CUIControlPublisher.swift */,
 				F967F9F323D81A060037AD9F /* CUIControlSubscription.swift */,
 				F967F9F923D8D8280037AD9F /* CUIViewController.swift */,
 				F9845AAE23F5262C002C99B2 /* CUITableView.swift */,
+				F95DE65F240B4DB600E1832F /* NSObject+Memory.swift */,
+				F95DE661240B4DC300E1832F /* UIAlertController+CombineUI.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -333,7 +342,10 @@
 			files = (
 				F967F9FA23D8D8280037AD9F /* CUIViewController.swift in Sources */,
 				F9845AAF23F5262C002C99B2 /* CUITableView.swift in Sources */,
+				F95DE662240B4DC300E1832F /* UIAlertController+CombineUI.swift in Sources */,
 				F967F9F423D81A060037AD9F /* CUIControlSubscription.swift in Sources */,
+				F95DE660240B4DB600E1832F /* NSObject+Memory.swift in Sources */,
+				F91E8068240B56BF001F5049 /* CNSManagedObjectFetchResultsSnapshot.swift in Sources */,
 				F967F9EF23D807D80037AD9F /* CUIControlPublisher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

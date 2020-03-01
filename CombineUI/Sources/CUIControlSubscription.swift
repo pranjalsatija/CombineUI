@@ -9,7 +9,30 @@
 import Combine
 import UIKit
 
-public class CUIControlSubscription<C: UIControl, S: Subscriber>: Subscription where S.Input == C {
+public protocol SupportsTargetAction {
+    func addTarget(_ target: Any?, action: Selector, for event: UIControl.Event)
+}
+
+public extension SupportsTargetAction {
+    func publisher(for events: [UIControl.Event], shouldIgnoreDemand: Bool = true) -> CUIControlPublisher<Self> {
+        return CUIControlPublisher(control: self, events: events)
+    }
+    
+    func publisher(for event: UIControl.Event, shouldIgnoreDemand: Bool = true) -> CUIControlPublisher<Self> {
+        return CUIControlPublisher(control: self, events: [event])
+    }
+}
+
+extension UIBarButtonItem: SupportsTargetAction {
+    public func addTarget(_ target: Any?, action: Selector, for event: UIControl.Event) {
+        self.action = action
+        self.target = target as AnyObject
+    }
+}
+
+extension UIControl: SupportsTargetAction { }
+
+public class CUIControlSubscription<C: SupportsTargetAction, S: Subscriber>: Subscription where S.Input == C {
     var control: C?
     let events: [UIControl.Event]
     var subscriber: S?
