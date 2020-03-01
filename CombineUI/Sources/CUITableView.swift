@@ -193,7 +193,7 @@ extension UITableView {
     public var descriptor: UITableViewDescriptor? {
         get { objc_getAssociatedObject(self, Self.snapshotKey) as? UITableViewDescriptor }
         set {
-            objc_setAssociatedObject(self, Self.snapshotKey, newValue, .OBJC_ASSOCIATION_ASSIGN)
+            objc_setAssociatedObject(self, Self.snapshotKey, newValue, .OBJC_ASSOCIATION_RETAIN)
             
             delegate = newValue
             newValue?.tableView = self

@@ -18,14 +18,24 @@ public extension UIAlertController {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let subject = PassthroughSubject<String?, Never>()
         
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("Add", comment: "Add"), style: .default) {(_) in
-            let text = alertController.textFields?.first?.text
+        var didSendText = false
+        func send(_ text: String?) {
+            guard !didSendText else {
+                return
+            }
+            
             subject.send(text)
+            didSendText = true
+        }
+        
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"), style: .cancel) {(_) in
+            send(nil)
             alertController.dismiss(animated: true)
         })
         
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"), style: .default) {(_) in
-            subject.send(nil)
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("Add", comment: "Add"), style: .default) {(_) in
+            let text = alertController.textFields?.first?.text
+            send(text)
             alertController.dismiss(animated: true)
         })
                 
@@ -35,7 +45,7 @@ public extension UIAlertController {
             let publisher = textField.publisher(for: .editingDidEnd)
                 .map { $0.text }
                 .sink {
-                    subject.send($0)
+                    send($0)
                     alertController.dismiss(animated: true)
                 }
             

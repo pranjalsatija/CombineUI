@@ -29,6 +29,9 @@ public class CNSManagedObjectFetchedResultsController<Object: NSManagedObject>: 
         
         do {
             try self.fetchedResultsController.performFetch()
+            
+            let objects = self.fetchedResultsController.fetchedObjects ?? []
+            subject.send(objects)
         } catch {
             subject.send(completion: .failure(error))
         }
