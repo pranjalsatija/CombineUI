@@ -15,9 +15,9 @@ class ViewController: CUIViewController {
     override func configureBindings() {
         super.configureBindings()
         
-        tableView.descriptor = UITableViewDescriptor(
+        tableView.descriptor = CUITableViewDescriptor(
             sections: Just([
-                UITableViewSection(
+                CUITableViewSection(
                     data: Just([""]),
                     cellProvider: {(a, b, c) in
                         return UITableViewCell()

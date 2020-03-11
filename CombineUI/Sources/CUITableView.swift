@@ -10,7 +10,7 @@ import Combine
 import UIKit
 
 public class DiffableDataSource<T: Hashable, I: Hashable>: UITableViewDiffableDataSource<T, I> {
-    var sections: [UITableViewSection]!
+    var sections: [CUITableViewSection]!
     
     public override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         true
@@ -25,7 +25,7 @@ public class DiffableDataSource<T: Hashable, I: Hashable>: UITableViewDiffableDa
     }
 }
 
-public class UITableViewSection: NSObject {
+public class CUITableViewSection: NSObject {
     private(set) var data = [AnyHashable]()
     private(set) var sectionIndex: Int!
     
@@ -38,26 +38,6 @@ public class UITableViewSection: NSObject {
     private let footer: Accessory?
     
     private var subscriptions = Set<AnyCancellable>()
-    
-    public convenience init<T: Hashable>(
-        data: [T],
-        cellProvider: @escaping (UITableView, IndexPath, T) -> UITableViewCell,
-        onSelect: ((IndexPath, T) -> Void)? = nil,
-        leadingSwipeActionsConfiguration: ((IndexPath, T) -> UISwipeActionsConfiguration?)? = nil,
-        trailingSwipeActionsConfiguration: ((IndexPath, T) -> UISwipeActionsConfiguration?)? = nil,
-        header: Accessory? = nil,
-        footer: Accessory? = nil
-    ) {
-        self.init(
-            data: Just(data),
-            cellProvider: cellProvider,
-            onSelect: onSelect,
-            leadingSwipeActionsConfiguration: leadingSwipeActionsConfiguration,
-            trailingSwipeActionsConfiguration: trailingSwipeActionsConfiguration,
-            header: header,
-            footer: footer
-        )
-    }
     
     public init<T: Hashable, P: Publisher>(
         data: P,
@@ -77,7 +57,7 @@ public class UITableViewSection: NSObject {
         self.footer = footer
     }
 
-    func attach(to descriptor: UITableViewDescriptor, sectionIndex: Int) {
+    func attach(to descriptor: CUITableViewDescriptor, sectionIndex: Int) {
         self.sectionIndex = sectionIndex
         
         dataPublisher.sink {
@@ -112,7 +92,7 @@ public class UITableViewSection: NSObject {
     }
 }
 
-extension UITableViewSection {
+extension CUITableViewSection {
     func cellForRow(in tableView: UITableView, indexPath: IndexPath) -> UITableViewCell { cellProvider(tableView, indexPath, data[indexPath.row]) }
     func numberOfRows() -> Int { data.count }
     func titleForFooter() -> String? { footer?.text }
@@ -123,7 +103,7 @@ extension UITableViewSection {
     func viewForHeader() -> UIView? { header?.view }
 }
 
-public class UITableViewDescriptor: NSObject {
+public class CUITableViewDescriptor: NSObject {
     var dataSource: DiffableDataSource<Int, AnyHashable>!
     var tableView: UITableView? {
         didSet {
@@ -131,11 +111,11 @@ public class UITableViewDescriptor: NSObject {
         }
     }
     
-    private var sections = [UITableViewSection]()
-    private let sectionsPublisher: AnyPublisher<[UITableViewSection], Never>
+    private var sections = [CUITableViewSection]()
+    private let sectionsPublisher: AnyPublisher<[CUITableViewSection], Never>
     private var subscriptions = Set<AnyCancellable>()
 
-    public init<T: Publisher>(sections: T) where T.Output == [UITableViewSection], T.Failure == Never {
+    public init<T: Publisher>(sections: T) where T.Output == [CUITableViewSection], T.Failure == Never {
         self.sectionsPublisher = sections.eraseToAnyPublisher()
     }
     
@@ -169,7 +149,7 @@ public class UITableViewDescriptor: NSObject {
     }
 }
 
-extension UITableViewDescriptor: UITableViewDelegate {
+extension CUITableViewDescriptor: UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         sections.count
     }
@@ -190,8 +170,8 @@ extension UITableViewDescriptor: UITableViewDelegate {
 extension UITableView {
     static private let snapshotKey = "snapshot"
     
-    public var descriptor: UITableViewDescriptor? {
-        get { objc_getAssociatedObject(self, Self.snapshotKey) as? UITableViewDescriptor }
+    public var descriptor: CUITableViewDescriptor? {
+        get { objc_getAssociatedObject(self, Self.snapshotKey) as? CUITableViewDescriptor }
         set {
             objc_setAssociatedObject(self, Self.snapshotKey, newValue, .OBJC_ASSOCIATION_RETAIN)
             
