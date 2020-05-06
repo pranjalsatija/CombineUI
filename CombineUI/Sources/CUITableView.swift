@@ -13,7 +13,10 @@ public class DiffableDataSource<T: Hashable, I: Hashable>: UITableViewDiffableDa
     var sections: [CUITableViewSection]!
     
     public override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        true
+        let leadingSwipeActions = sections[indexPath.section].leadingSwipeActionsConfiguration(for: indexPath)
+        let trailingSwipeActions = sections[indexPath.section].trailingSwipeActionsConfiguration(for: indexPath)
+        
+        return (leadingSwipeActions != nil) || (trailingSwipeActions != nil)
     }
     
     public override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
@@ -27,7 +30,8 @@ public class DiffableDataSource<T: Hashable, I: Hashable>: UITableViewDiffableDa
 
 public class CUITableViewSection: NSObject {
     private(set) var data = [AnyHashable]()
-    private(set) var sectionIndex: Int!
+    private(set) weak var descriptor: CUITableViewDescriptor?
+    private(set) var sectionIndex: Int = 0
     
     private let dataPublisher: AnyPublisher<[AnyHashable], Never>
     private let cellProvider: (UITableView, IndexPath, AnyHashable) -> UITableViewCell
@@ -58,11 +62,14 @@ public class CUITableViewSection: NSObject {
     }
 
     func attach(to descriptor: CUITableViewDescriptor, sectionIndex: Int) {
+        self.descriptor = descriptor
         self.sectionIndex = sectionIndex
-        
+    }
+    
+    func startListening() {
         dataPublisher.sink {
             self.data = $0
-            descriptor.updateSnapshot()
+            self.descriptor?.updateSnapshot()
         }.store(in: &subscriptions)
     }
     
@@ -144,6 +151,7 @@ public class CUITableViewDescriptor: NSObject {
             self.dataSource.sections = $0
             self.sections = $0
             self.sections.enumerated().forEach { $1.attach(to: self, sectionIndex: $0) }
+            self.sections.forEach { $0.startListening() }
             tableView.dataSource = self.dataSource
         }.store(in: &subscriptions)
     }
@@ -164,6 +172,14 @@ extension CUITableViewDescriptor: UITableViewDelegate {
     
     public func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         sections[indexPath.section].trailingSwipeActionsConfiguration(for: indexPath)
+    }
+    
+    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        sections[section].viewForHeader()
+    }
+    
+    public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        sections[section].viewForFooter()
     }
 }
 
