@@ -112,6 +112,8 @@ extension CUITableViewSection {
 }
 
 public class CUITableViewDescriptor: NSObject {
+    public var shouldAnimateUpdates = false
+    
     var dataSource: DiffableDataSource<Int, AnyHashable>!
     var tableView: UITableView? {
         didSet {
@@ -136,8 +138,7 @@ public class CUITableViewDescriptor: NSObject {
             snapshot.appendItems(section.data, toSection: section.sectionIndex)
         }
         
-        dataSource.apply(snapshot, animatingDifferences: !isFirstUpdate)
-        isFirstUpdate = false
+        dataSource.apply(snapshot, animatingDifferences: shouldAnimateUpdates)
     }
     
     private func configureBindings() {
@@ -194,12 +195,10 @@ extension UITableView {
     static private let snapshotKey = "snapshot"
     
     public var descriptor: CUITableViewDescriptor? {
-        get { objc_getAssociatedObject(self, Self.snapshotKey) as? CUITableViewDescriptor }
+        get { delegate as? CUITableViewDescriptor }
         set {
-            objc_setAssociatedObject(self, Self.snapshotKey, newValue, .OBJC_ASSOCIATION_RETAIN)
-            
-            delegate = newValue
             newValue?.tableView = self
+            delegate = newValue
         }
     }
 }
