@@ -35,7 +35,7 @@ public class CUITableViewSection: NSObject {
     
     private let dataPublisher: AnyPublisher<[AnyHashable], Never>
     private let cellProvider: (UITableView, IndexPath, AnyHashable) -> UITableViewCell
-    private let onSelect: ((IndexPath, AnyHashable) -> Void)?
+    private let onSelect: ((UITableView, IndexPath, AnyHashable) -> Void)?
     private let leadingSwipeActionsConfiguration: ((IndexPath, AnyHashable) -> UISwipeActionsConfiguration?)?
     private let trailingSwipeActionsConfiguration: ((IndexPath, AnyHashable) -> UISwipeActionsConfiguration?)?
     private let header: Accessory?
@@ -46,7 +46,7 @@ public class CUITableViewSection: NSObject {
     public init<T: Hashable, P: Publisher>(
         data: P,
         cellProvider: @escaping (UITableView, IndexPath, T) -> UITableViewCell,
-        onSelect: ((IndexPath, T) -> Void)? = nil,
+        onSelect: ((UITableView, IndexPath, T) -> Void)? = nil,
         leadingSwipeActionsConfiguration: ((IndexPath, T) -> UISwipeActionsConfiguration?)? = nil,
         trailingSwipeActionsConfiguration: ((IndexPath, T) -> UISwipeActionsConfiguration?)? = nil,
         header: Accessory? = nil,
@@ -54,7 +54,7 @@ public class CUITableViewSection: NSObject {
     ) where P.Output == [T], P.Failure == Never {
         self.dataPublisher = data.map { $0 as [AnyHashable] }.eraseToAnyPublisher()
         self.cellProvider = { cellProvider($0, $1, $2 as! T) }
-        self.onSelect = { onSelect?($0, $1 as! T) }
+        self.onSelect = { onSelect?($0, $1, $2 as! T) }
         self.leadingSwipeActionsConfiguration = { leadingSwipeActionsConfiguration?($0, $1 as! T) }
         self.trailingSwipeActionsConfiguration = { trailingSwipeActionsConfiguration?($0, $1 as! T) }
         self.header = header
