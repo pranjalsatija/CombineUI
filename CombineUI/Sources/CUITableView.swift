@@ -102,6 +102,7 @@ public class CUITableViewSection: NSObject {
 extension CUITableViewSection {
     func cellForRow(in tableView: UITableView, indexPath: IndexPath) -> UITableViewCell { cellProvider(tableView, indexPath, data[indexPath.row]) }
     func numberOfRows() -> Int { data.count }
+    func onSelect(in tableView: UITableView, indexPath: IndexPath) { onSelect?(tableView, indexPath, data[indexPath.row]) }
     func titleForFooter() -> String? { footer?.text }
     func titleForHeader() -> String? { header?.text }
     func leadingSwipeActionsConfiguration(for indexPath: IndexPath) -> UISwipeActionsConfiguration? { leadingSwipeActionsConfiguration?(indexPath, data[indexPath.row]) }
@@ -160,6 +161,10 @@ public class CUITableViewDescriptor: NSObject {
 extension CUITableViewDescriptor: UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         sections.count
+    }
+    
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        sections[indexPath.section].onSelect(in: tableView, indexPath: indexPath)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
