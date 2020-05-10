@@ -119,6 +119,7 @@ public class CUITableViewDescriptor: NSObject {
         }
     }
     
+    private var isFirstUpdate = true
     private var sections = [CUITableViewSection]()
     private let sectionsPublisher: AnyPublisher<[CUITableViewSection], Never>
     private var subscriptions = Set<AnyCancellable>()
@@ -135,7 +136,8 @@ public class CUITableViewDescriptor: NSObject {
             snapshot.appendItems(section.data, toSection: section.sectionIndex)
         }
         
-        dataSource.apply(snapshot, animatingDifferences: true)
+        dataSource.apply(snapshot, animatingDifferences: !isFirstUpdate)
+        isFirstUpdate = false
     }
     
     private func configureBindings() {

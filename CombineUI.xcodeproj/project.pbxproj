@@ -27,6 +27,8 @@
 		F97BC99423DABE29008A5761 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F97BC99323DABE29008A5761 /* Assets.xcassets */; };
 		F97BC99723DABE29008A5761 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F97BC99523DABE29008A5761 /* LaunchScreen.storyboard */; };
 		F9845AAF23F5262C002C99B2 /* CUITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9845AAE23F5262C002C99B2 /* CUITableView.swift */; };
+		F9C6209C246887E60009A371 /* CombineUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F967F9D423D807040037AD9F /* CombineUI.framework */; };
+		F9C6209D246887E60009A371 /* CombineUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F967F9D423D807040037AD9F /* CombineUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,7 +46,28 @@
 			remoteGlobalIDString = F967F9D323D807040037AD9F;
 			remoteInfo = CombineUI;
 		};
+		F9C6209E246887E60009A371 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F967F9CB23D807040037AD9F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F967F9D323D807040037AD9F;
+			remoteInfo = CombineUI;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F9C620A0246887E70009A371 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F9C6209D246887E60009A371 /* CombineUI.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		F91E8067240B56BF001F5049 /* CNSManagedObjectFetchResultsSnapshot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNSManagedObjectFetchResultsSnapshot.swift; sourceTree = "<group>"; };
@@ -95,6 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9C6209C246887E60009A371 /* CombineUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,11 +278,13 @@
 				F97BC98423DABE29008A5761 /* Sources */,
 				F97BC98523DABE29008A5761 /* Frameworks */,
 				F97BC98623DABE29008A5761 /* Resources */,
+				F9C620A0246887E70009A371 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				F97BC99D23DABE70008A5761 /* PBXTargetDependency */,
+				F9C6209F246887E60009A371 /* PBXTargetDependency */,
 			);
 			name = Example;
 			productName = Example;
@@ -384,6 +410,11 @@
 			isa = PBXTargetDependency;
 			target = F967F9D323D807040037AD9F /* CombineUI */;
 			targetProxy = F97BC99C23DABE70008A5761 /* PBXContainerItemProxy */;
+		};
+		F9C6209F246887E60009A371 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F967F9D323D807040037AD9F /* CombineUI */;
+			targetProxy = F9C6209E246887E60009A371 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

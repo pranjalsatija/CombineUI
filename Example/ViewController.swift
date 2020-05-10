@@ -14,7 +14,7 @@ class ViewController: CUIViewController {
     @IBOutlet var tableView: UITableView!
     
     @Published
-    var data = [Int]()
+    var data = [0, 1, 2, 3, 4]
     
     override func configureBindings() {
         super.configureBindings()
@@ -31,6 +31,9 @@ class ViewController: CUIViewController {
                         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
                         cell.textLabel?.text = String(element)
                         return cell
+                    },
+                    onSelect: {(tableView, indexPath, element) in
+                        tableView.deselectRow(at: indexPath, animated: true)
                     }
                 )
             ])

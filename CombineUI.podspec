@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'CombineUI'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.summary          = 'Combine bindings for Cocoa Touch.'
   s.description      = 'This library exposes UIControl, UITableView, NSFetchedResultsController, and other common Cocoa Touch classes to Combine.'
   s.homepage         = 'https://github.com/pranjalsatija/CombineUI'
